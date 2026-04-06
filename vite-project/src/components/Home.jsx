@@ -2,26 +2,26 @@ import React, { useState, useEffect, useRef } from "react";
 
 function Home() {
   const [messages, setMessages] = useState([
-    { text: "Hey 👋 I'm your AI assistant", sender: "bot" },
+    { text: "Hey 👋 I'm madhu_ai, your AI assistant", sender: "bot" },
   ]);
 
   const [input, setInput] = useState("");
   const [showAuth, setShowAuth] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // ✅ ADDED: history state
+  // ✅ history state
   const [history, setHistory] = useState(() => {
     return JSON.parse(localStorage.getItem("chatHistory")) || [];
   });
 
   const chatEndRef = useRef(null);
 
-  // ✅ ADDED: save history
+  // ✅ save history
   useEffect(() => {
     localStorage.setItem("chatHistory", JSON.stringify(history));
   }, [history]);
 
-  // existing scroll (UNCHANGED)
+  // scroll
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
@@ -40,7 +40,7 @@ function Home() {
     setInput("");
     setLoading(true);
 
-    // ✅ ADDED: save immediately
+    // save immediately
     setHistory((prev) => [
       {
         id: Date.now(),
@@ -72,7 +72,7 @@ function Home() {
 
       setMessages(updatedMessages);
 
-      // ✅ ADDED: update history with bot reply
+      // update history with bot reply
       setHistory((prev) => {
         const updated = [...prev];
         if (updated.length > 0) {
@@ -91,12 +91,12 @@ function Home() {
     setLoading(false);
   };
 
-  // ✅ ADDED: load chat
+  // load chat
   const loadChat = (chat) => {
     setMessages(chat);
   };
 
-  // ✅ ADDED: clear history
+  // clear history
   const clearHistory = () => {
     setHistory([]);
     localStorage.removeItem("chatHistory");
@@ -105,13 +105,13 @@ function Home() {
   return (
     <div className="h-screen flex bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-200 overflow-hidden">
 
-      {/* 🔹 Background (UNCHANGED) */}
+      {/* Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="w-72 h-72 bg-purple-500 opacity-20 blur-3xl rounded-full absolute top-10 left-10 animate-pulse"></div>
         <div className="w-72 h-72 bg-blue-500 opacity-20 blur-3xl rounded-full absolute bottom-10 right-10 animate-pulse"></div>
       </div>
 
-      {/* 🔹 Sidebar (ADDED ONLY) */}
+      {/* Sidebar */}
       <div className="w-64 bg-gray-900/80 backdrop-blur-lg border-r border-gray-700 p-4 hidden md:flex flex-col z-10">
         <h2 className="text-xl font-bold mb-4">🕘 History</h2>
 
@@ -135,16 +135,16 @@ function Home() {
         </button>
       </div>
 
-      {/* 🔹 Main (UNCHANGED) */}
+      {/* Main */}
       <div className="flex flex-col flex-1 z-10">
 
-        {/* 🔹 Navbar (UNCHANGED) */}
+        {/* Navbar */}
         <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700 bg-gray-900/80 backdrop-blur-lg">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center animate-bounce">
               🤖
             </div>
-            <h1 className="text-lg font-semibold">AI Assistant</h1>
+            <h1 className="text-lg font-semibold">madhu_ai</h1>
           </div>
 
           <button
@@ -155,15 +155,15 @@ function Home() {
           </button>
         </div>
 
-        {/* 🔹 Chat Area (UNCHANGED) */}
+        {/* Chat Area */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
 
           {messages.length === 1 && (
             <div className="text-center mt-20 opacity-70">
               <h2 className="text-2xl font-bold mb-2">
-                Welcome 👋
+                Welcome  i am madhu here to assist you👋
               </h2>
-              <p>Ask anything to start chatting with AI</p>
+              <p>Ask anything to start chatting with madhu_ai</p>
             </div>
           )}
 
@@ -205,7 +205,7 @@ function Home() {
           <div ref={chatEndRef}></div>
         </div>
 
-        {/* 🔹 Input (UNCHANGED) */}
+        {/* Input */}
         <div className="p-4 border-t border-gray-700 flex items-center gap-3 bg-gray-900/80">
 
           <input
